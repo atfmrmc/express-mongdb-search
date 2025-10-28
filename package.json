@@ -2,9 +2,9 @@
   "name": "express-mongdb-search",
   "version": "1.0.0",
   "description": "Project created during ESGI IWM1 class",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "dev": "node index.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
