@@ -1,0 +1,15 @@
+ARG NODE_VERSION=22.21.0-alpine3.21
+
+################################################################################
+# 1) Builder for both dev & prod
+FROM node:${NODE_VERSION} AS builder
+WORKDIR /usr/src/app
+COPY package*.json ./
+RUN npm i
+COPY . .
+
+################################################################################
+# 2) Dev image (fast rebuilds, hot-reload)
+FROM builder AS development
+ENV NODE_ENV=development
+# override the entrypoint to run vite (comes from devDeps)

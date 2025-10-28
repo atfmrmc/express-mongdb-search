@@ -1,0 +1,24 @@
+{
+  "name": "express-mongdb-search",
+  "version": "1.0.0",
+  "description": "Project created during ESGI IWM1 class",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atfmrmc/express-mongdb-search.git"
+  },
+  "author": "atfmrmc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atfmrmc/express-mongdb-search/issues"
+  },
+  "homepage": "https://github.com/atfmrmc/express-mongdb-search#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mongoose": "^8.19.2"
+  }
+}
