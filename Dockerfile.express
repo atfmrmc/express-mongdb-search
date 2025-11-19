@@ -7,15 +7,23 @@ FROM node:${NODE_VERSION} AS builder
 WORKDIR /usr/src/app
 
 COPY package*.json ./
-
 RUN npm i
 
-COPY . .
+# Alpine-based images don't include the GNU `useradd` utility by default
+# use the busybox-style addgroup/adduser commands which are available in Alpine
+# create a group then a system user with UID 1001 and /bin/sh as shell
+RUN addgroup -S app \
+    && adduser -S -u 1001 -G app -s /bin/sh app
+USER app
+
+COPY --chown=app:app . .
 
 ################################################################################
 # 2) Dev image (fast rebuilds, hot-reload)
 FROM builder AS development
 
 ENV NODE_ENV=development
+
+ENV CHOKIDAR_USEPOLLING=true
 
 CMD ["npm", "run", "start"]

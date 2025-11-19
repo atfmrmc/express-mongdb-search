@@ -12,10 +12,19 @@ app.use((req, res, next) => {
 });
 
 // Route qui utilise res.render()
+/*
 app.get("/:name", (req, res) => {
   res.render("index", {
     title: "Accueil",
     message: "Bonjour Mr " + req.params.name,
+  });
+});
+*/
+
+app.get("/", (req, res) => {
+  res.render("index", {
+    title: "Accueil",
+    message: "Bienvenue sur la page d'accueil",
   });
 });
 

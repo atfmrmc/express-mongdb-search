@@ -4,24 +4,53 @@ services:
       context: .
       dockerfile: Dockerfile.express
       target: development
+
     environment:
       - NODE_ENV=development
-    ports:
-      - "3000:3000"
+      - CHOKIDAR_USEPOLLING=true
+
+    ports: ["3000:3000"]
+
     volumes:
-      - ./:/usr/src/app:delegated
       - node_modules:/usr/src/app/node_modules
-    depends_on:
-      - mongodb
+
+    develop:
+      watch:
+        - action: sync
+          path: ./
+          target: /usr/src/app
+          initial_sync: true
+          ignore: ["node_modules/", ".git/"]
+
+        - action: rebuild
+          path: package.json
+
+        - action: restart
+          path: ./server.js
+          target: /usr/src/app
+          initial_sync: true
+
+    networks: [db]
+
+    depends_on: [mongodb]
 
   mongodb:
     image: mongo:latest
 
-    ports:
-      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+
     volumes:
       - mongodbdata:/data/db
+
+    ports: ["27017:27017"]
+
+    networks: [db]
 
 volumes:
   mongodbdata:
   node_modules:
+
+networks:
+  db:
