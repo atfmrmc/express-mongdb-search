@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Project created during ESGI IWM1 class",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "node server.js"
   },

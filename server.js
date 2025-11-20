@@ -1,6 +1,9 @@
-const express = require("express");
+import setupDatabaseConnection from "./database/connect.js";
+import express from "express";
+
 const app = express();
-const port = 3000;
+
+setupDatabaseConnection();
 
 // Configuration du moteur de rendu EJS
 app.set("view engine", "ejs");
@@ -29,6 +32,8 @@ app.get("/", (req, res) => {
 });
 
 // Démarrer le serveur
-app.listen(port, () => {
-  console.log(`Serveur démarré sur http://localhost:${port}`);
+app.listen(process.env.PORT || 3000, () => {
+  console.log(
+    `Serveur démarré sur http://localhost:${process.env.PORT || 3000}`
+  );
 });

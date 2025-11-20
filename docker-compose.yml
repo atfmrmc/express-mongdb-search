@@ -5,9 +5,8 @@ services:
       dockerfile: Dockerfile.express
       target: development
 
-    environment:
-      - NODE_ENV=development
-      - CHOKIDAR_USEPOLLING=true
+    env_file:
+      - .env
 
     ports: ["3000:3000"]
 
@@ -27,7 +26,7 @@ services:
 
         - action: restart
           path: ./server.js
-          target: /usr/src/app
+          target: /usr/src/app/server.js
           initial_sync: true
 
     networks: [db]
@@ -38,15 +37,16 @@ services:
     image: mongo:latest
 
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USER:-admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD:-password}
+      MONGO_INITDB_DATABASE: ${MONGODB_DB:-bibliotheque}
 
     volumes:
       - mongodbdata:/data/db
 
-    ports: ["27017:27017"]
-
     networks: [db]
+
+    command: mongod --quiet --logpath /dev/null
 
 volumes:
   mongodbdata:
