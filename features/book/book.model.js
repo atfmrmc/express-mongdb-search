@@ -5,6 +5,11 @@ const bookSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Author",
+    required: true,
+  },
   release_date: {
     type: Date,
     required: true,
@@ -21,5 +26,9 @@ const bookSchema = new mongoose.Schema({
 });
 
 const Book = mongoose.model("Book", bookSchema);
+
+export const findAllBooks = () => {
+  return Book.find({}).populate("author");
+};
 
 export default Book;

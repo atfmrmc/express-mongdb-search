@@ -26,7 +26,17 @@ services:
 
         - action: restart
           path: ./server.js
-          target: /usr/src/app/server.js
+          target: /usr/src/app/
+          initial_sync: true
+
+        - action: restart
+          path: ./views/index.js
+          target: /usr/src/app/
+          initial_sync: true
+
+        - action: restart
+          path: ./api/index.js
+          target: /usr/src/app/
           initial_sync: true
 
     networks: [db]
