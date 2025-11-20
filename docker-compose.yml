@@ -33,16 +33,33 @@ services:
 
     depends_on: [mongodb]
 
+  mongo-express:
+    image: mongo-express
+
+    ports: [8081:8081]
+
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://${MONGODB_ROOT_USER:-admin}:${MONGODB_ROOT_PASSWORD:-adminpassword}@mongodb:27017/
+      ME_CONFIG_BASICAUTH_USERNAME: ${MONGODB_ROOT_USER:-admin}
+      ME_CONFIG_BASICAUTH_PASSWORD: ${MONGODB_ROOT_PASSWORD:-adminpassword}
+
+    networks: [db]
+
+    depends_on: [mongodb]
   mongodb:
     image: mongo:latest
 
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USER:-admin}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD:-password}
-      MONGO_INITDB_DATABASE: ${MONGODB_DB:-bibliotheque}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ROOT_USER:-admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ROOT_PASSWORD:-adminpassword}
+      MONGO_INITDB_DATABASE: ${MONGODB_DB:-base}
+      MONGODB_DB: ${MONGODB_DB:-base}
+      MONGODB_USER: ${MONGODB_USER:-user}
+      MONGODB_PASSWORD: ${MONGODB_PASSWORD:-password}
 
     volumes:
       - mongodbdata:/data/db
+      - ./mongodb/init.js:/docker-entrypoint-initdb.d/init.js:ro
 
     networks: [db]
 

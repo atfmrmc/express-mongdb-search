@@ -4,7 +4,7 @@ const initConnection = async () => {
   try {
     mongoose
       .connect(
-        `mongodb://${process.env.MONGODB_HOST}:${process.env.MONGODB_PORT}/${process.env.MONGODB_DB}`
+        `mongodb://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_HOST}:${process.env.MONGODB_PORT}/${process.env.MONGODB_DB}`
       )
       .then(() => console.log("Connexion à MongoDB réussie"));
   } catch (error) {

@@ -1,9 +1,26 @@
-import setupDatabaseConnection from "./database/connect.js";
+import setupDatabaseConnection from "./mongodb/connect.js";
 import express from "express";
+import Book from "./features/book/book.model.js";
 
 const app = express();
 
 setupDatabaseConnection();
+
+const newBook = new Book({
+  title: "Le Petit Prince",
+  release_date: new Date("1943-04-06"),
+  genre: "Fiction",
+  ISBN: "978-0156012195",
+});
+
+newBook
+  .save()
+  .then(() => {
+    console.log("Livre sauvegardé avec succès !");
+  })
+  .catch((error) => {
+    console.error("Erreur lors de la sauvegarde du livre :", error);
+  });
 
 // Configuration du moteur de rendu EJS
 app.set("view engine", "ejs");
@@ -14,16 +31,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Route qui utilise res.render()
-/*
-app.get("/:name", (req, res) => {
-  res.render("index", {
-    title: "Accueil",
-    message: "Bonjour Mr " + req.params.name,
-  });
-});
-*/
-
+// Route pour la page d'accueil
 app.get("/", (req, res) => {
   res.render("index", {
     title: "Accueil",
