@@ -31,4 +31,15 @@ export const findAllBooks = () => {
   return Book.find({}).populate("author");
 };
 
+export const findBooks = (query) => {
+  const books = Book.find({
+    $or: [
+      { title: { $regex: query || "", $options: "i" } },
+      { genre: { $regex: query || "", $options: "i" } },
+      { ISBN: { $regex: query || "", $options: "i" } },
+    ],
+  }).populate("author");
+  return books;
+};
+
 export default Book;

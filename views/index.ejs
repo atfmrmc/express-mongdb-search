@@ -5,9 +5,13 @@
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0" />
-    <title><%= title %></title>
+    <title><%= metaTitle %></title>
   </head>
   <body>
-    <h1><%= message %></h1>
+    <%- include("partials/header") %>
+
+    <p>Bienvenue sur la page d'accueil</p>
+
+    <%- include("partials/footer") %>
   </body>
 </html>

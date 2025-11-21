@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title><%= metaTitle %></title>
+  </head>
+  <body>
+    <%- include("../partials/header") %>
+
+    <p>Les livres</p>
+
+    <form
+      action="/books"
+      method="GET">
+      <label for="search"
+        >Rechercher un livre :
+        <input
+          type="text"
+          id="search"
+          name="search"
+          placeholder="Titre, genre, ISBN, ..."
+          value="<%- query %>" />
+      </label>
+      <button type="submit">Rechercher</button>
+      <input
+        type="reset"
+        value="Reset" />
+    </form>
+    <% if (books && books.length > 0) { %>
+    <ul>
+      <% books.forEach(function(book) { %> <% console.log(book.author); %>
+      <li>
+        <strong><%= book.title %></strong>
+        <% if (book.author) { %> par <%= book.author.firstname %> <%=
+        book.author.lastname %> <% } %>
+      </li>
+      <% }); %>
+    </ul>
+    <% } else { %>
+    <p>Aucun livre disponible.</p>
+    <% } %> <%- include("../partials/footer") %>
+  </body>
+</html>

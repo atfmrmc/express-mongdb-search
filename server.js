@@ -1,7 +1,6 @@
 import express from "express";
 import setupDatabaseConnection from "./mongodb/connect.js";
-import apiRouter from "./features/routes.js";
-import viewRouter from "./views/routes.js";
+import router from "./src/routes/index.js";
 
 const app = express();
 
@@ -12,14 +11,15 @@ app.set("view engine", "ejs");
 app.set("views", "./views");
 
 // Middleware global pour loguer les requêtes
+
 app.use((req, res, next) => {
+  express.urlencoded({ extended: true });
   console.log(`Requête reçue à ${req.url} - Time: `, new Date().toISOString());
   next();
 });
 
 // Routes Indexes
-app.use("/api", apiRouter);
-app.use("/", viewRouter);
+app.use("/", router);
 
 // Démarrer le serveur
 app.listen(process.env.PORT || 3000, () => {
