@@ -1,23 +1,34 @@
 import mongoose from "mongoose";
 
-const authorSchema = new mongoose.Schema({
-  firstname: {
-    type: String,
-    required: true,
+const authorSchema = new mongoose.Schema(
+  {
+    firstname: {
+      type: String,
+      required: true,
+    },
+    lastname: {
+      type: String,
+      required: true,
+    },
+    birthdate: {
+      type: Date,
+      required: true,
+    },
+    nationality: {
+      type: String,
+      required: true,
+    },
   },
-  lastname: {
-    type: String,
-    required: true,
-  },
-  birthdate: {
-    type: Date,
-    required: true,
-  },
-  nationality: {
-    type: String,
-    required: true,
-  },
-});
+  {
+    virtuals: {
+      fullName: {
+        get() {
+          return `${this.firstname} + " " + ${this.lastname}`;
+        },
+      },
+    },
+  }
+);
 
 const Author = mongoose.model("Author", authorSchema);
 
