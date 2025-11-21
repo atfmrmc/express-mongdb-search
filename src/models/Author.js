@@ -20,15 +20,22 @@ const authorSchema = new mongoose.Schema(
     },
   },
   {
+    toObject: { virtuals: true },
+    toJSON: { virtuals: true },
     virtuals: {
       fullName: {
         get() {
-          return `${this.firstname} + " " + ${this.lastname}`;
+          return `${this.firstname} ${this.lastname}`;
         },
       },
     },
   }
 );
+
+authorSchema.index({
+  firstname: "text",
+  lastname: "text",
+});
 
 const Author = mongoose.model("Author", authorSchema);
 

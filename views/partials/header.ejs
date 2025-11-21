@@ -1,8 +1,32 @@
-<header>
-  <p>Header</p>
+<style>
+  .main-header {
+    background-color: #222;
+    padding: 1rem 2rem;
+  }
+
+  .main-header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .main-header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .main-header nav ul li a:hover {
+    color: #f39c12;
+  }
+</style>
+<header class="main-header">
   <nav>
     <ul>
-      <li><a href="/">Accueil</a></li>
+      <li>
+        <a href="/"> Accueil </a>
+      </li>
       <li><a href="/books">Livres</a></li>
     </ul>
   </nav>
