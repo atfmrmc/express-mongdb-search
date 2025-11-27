@@ -37,6 +37,9 @@ bookSchema.index({
   ISBN: "text",
 });
 
+// Index author field for faster lookups
+bookSchema.index({ author: 1 });
+
 // Set up the Book model
 const Book = mongoose.model("Book", bookSchema);
 

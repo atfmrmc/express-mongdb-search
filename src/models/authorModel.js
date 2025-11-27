@@ -22,15 +22,18 @@ const authorSchema = new mongoose.Schema(
   {
     toObject: { virtuals: true },
     toJSON: { virtuals: true },
-    virtuals: {
-      fullName: {
-        get() {
-          return `${this.firstname} ${this.lastname}`;
-        },
-      },
-    },
   }
 );
+
+authorSchema.virtual("fullName").get(function () {
+  return `${this.firstname} ${this.lastname}`;
+});
+
+authorSchema.virtual("age").get(function () {
+  const ageDifMs = Date.now() - this.birthdate.getTime();
+  const ageDate = new Date(ageDifMs);
+  return Math.abs(ageDate.getUTCFullYear() - 1970);
+});
 
 authorSchema.index({
   firstname: "text",

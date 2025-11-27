@@ -1,10 +1,18 @@
 import express from "express";
 import expressLayouts from "express-ejs-layouts";
+import helmet from "helmet";
 import setupDatabaseConnection from "./mongodb/connect.js";
 import router from "./src/routes/index.js";
+import setupGlobalMiddlewares from "./src/middlewares/index.js";
 
+// ------------------------ //
+// -- Initialisation App -- //
+// ------------------------ //
+
+// Création de l'application Express
 const app = express();
 
+// Connexion à la base de données
 setupDatabaseConnection();
 
 // Configuration du moteur de rendu EJS
@@ -14,24 +22,18 @@ app.set("views", "./views");
 // ----------------------- //
 // -- Middleware global -- //
 // ----------------------- //
+setupGlobalMiddlewares(app);
 
-// Fichiers statiques
-app.use(express.static("public"));
-// Utilisation des layouts EJS
-app.use(expressLayouts);
-// Middleware pour parser le corps des requêtes
-app.use(express.urlencoded({ extended: true }));
-// Autres middlewares
-app.use((req, res, next) => {
-  console.log(`Requête reçue à ${req.url} - Time: `, new Date().toISOString());
-  next();
-});
-
-app.locals.styles = [];
-app.locals.scripts = [];
+// ------------ //
+// -- Routes -- //
+// ------------ //
 
 // Routes Indexes
 app.use("/", router);
+
+// --------------- //
+// -- Démarrage -- //
+// --------------- //
 
 // Démarrer le serveur
 app.listen(process.env.PORT || 3000, () => {
