@@ -1,0 +1,32 @@
+<%# HTML %>
+
+<h1>Les livres</h1>
+
+<form action="/books" method="GET">
+  <div class="input-container">
+    <input type="text" id="search" name="search" placeholder="<%= query ?
+    "Derniére recherche était " + query : 'Titre, genre, ISBN, ...' %>"
+    aria-label="Rechercher un livre" />
+    <input type="reset" value="x" />
+  </div>
+  <button type="submit">Rechercher</button>
+</form>
+<% if (books && books.length > 0) { %>
+<ul class="books-grid">
+  <% books.forEach(function(book) { %>
+  <li class="books-grid-item">
+    <img
+      src="https://placehold.co/300x330/darkslategrey/white"
+      alt="Couverture du livre <%= book.title %>" />
+    <div class="books-grid-item-content">
+      <strong><%= book.title %></strong>
+      <% if (book.author) { %> par <%= book.author.firstname %> <%=
+      book.author.lastname %> <% } %>
+    </div>
+    <% }); %>
+  </li>
+</ul>
+
+<% } else { %>
+<p>Aucun livre disponible.</p>
+<% } %>

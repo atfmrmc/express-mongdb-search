@@ -13,8 +13,8 @@ const initConnection = async () => {
 };
 
 const addDemoData = async () => {
-  const Book = await import("../src/models/Book.js");
-  const Author = await import("../src/models/Author.js");
+  const Book = await import("../src/models/bookModel.js");
+  const Author = await import("../src/models/authorModel.js");
 
   const authorCount = await Author.default.countDocuments();
   const bookCount = await Book.default.countDocuments();

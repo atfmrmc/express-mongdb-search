@@ -1,14 +1,25 @@
-import * as BookModel from "../models/Book.js";
+import * as Book from "../models/bookModel.js";
 
-const displayBooks = async (req, res) => {
+// Gets books with optional search
+const getBooks = async (req, res) => {
   try {
-    const { search } = req.query;
+    let books = [];
 
-    const books = await BookModel.findBooks(search);
-    res.render("books", {
+    // If there is no search query, get all books
+    if (!req.query.search || req.query.search.trim() === "") {
+      books = await Book.findAllBooks(req.query.search);
+    }
+
+    // If there is a search query, perform search
+    if (req.query.search) {
+      books = await Book.findBooksInIndex(req.query.search);
+    }
+
+    // Render the page with books data
+    res.render("pages/book", {
       metaTitle: "Books",
       books: books,
-      query: search,
+      query: req.query.search,
     });
   } catch (error) {
     console.error("Error in displayBooks:", error);
@@ -16,4 +27,4 @@ const displayBooks = async (req, res) => {
   }
 };
 
-export { displayBooks };
+export { getBooks };

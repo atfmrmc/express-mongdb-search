@@ -1,4 +1,5 @@
 import express from "express";
+import expressLayouts from "express-ejs-layouts";
 import setupDatabaseConnection from "./mongodb/connect.js";
 import router from "./src/routes/index.js";
 
@@ -10,13 +11,24 @@ setupDatabaseConnection();
 app.set("view engine", "ejs");
 app.set("views", "./views");
 
-// Middleware global pour loguer les requêtes
+// ----------------------- //
+// -- Middleware global -- //
+// ----------------------- //
 
+// Fichiers statiques
+app.use(express.static("public"));
+// Utilisation des layouts EJS
+app.use(expressLayouts);
+// Middleware pour parser le corps des requêtes
+app.use(express.urlencoded({ extended: true }));
+// Autres middlewares
 app.use((req, res, next) => {
-  express.urlencoded({ extended: true });
   console.log(`Requête reçue à ${req.url} - Time: `, new Date().toISOString());
   next();
 });
+
+app.locals.styles = [];
+app.locals.scripts = [];
 
 // Routes Indexes
 app.use("/", router);

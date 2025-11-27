@@ -1,8 +1,8 @@
-import * as AuthorModel from "../models/Author.js";
+import * as Author from "../models/authorModel.js";
 
 const displayAuthors = async (req, res) => {
   try {
-    const authors = await AuthorModel.findAllAuthors();
+    const authors = await Author.findAllAuthors();
     res.render("authors", {
       metaTitle: "Authors",
       authors: authors,

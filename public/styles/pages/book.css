@@ -1,0 +1,106 @@
+.pageContentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+}
+
+.input-container {
+  display: flex;
+}
+
+.input-container:has(input[type="text"]:not(:placeholder-shown))
+  input[type="reset"] {
+  display: flex;
+}
+
+form input[type="text"] {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  outline: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  min-width: 33vw;
+  width: 100%;
+  max-width: 500px;
+}
+
+form input[type="reset"] {
+  display: none;
+  position: absolute;
+
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 26px;
+  height: 26px;
+
+  border: none;
+  background: transparent;
+
+  font-weight: 900;
+  color: #888;
+  cursor: pointer;
+}
+
+form button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  outline: 1px solid #328635;
+  border-radius: 0 4px 4px 0;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+  gap: 1rem;
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+}
+
+.books-grid-item {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  overflow: hidden;
+
+  max-height: 600px;
+}
+
+.books-grid-item img {
+  width: 100%;
+
+  aspect-ratio: 2.7/3;
+
+  object-fit: cover;
+}
+
+.books-grid-item-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.books-grid-item-content strong {
+  font-size: 1.1rem;
+}
