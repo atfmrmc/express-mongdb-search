@@ -1,7 +1,7 @@
 import express from "express";
 import expressLayouts from "express-ejs-layouts";
-import setupDatabaseConnection from "./mongodb/connect.js";
-import router from "./src/routes/index.js";
+import setupDatabaseConnection from "../mongodb/connect.ts";
+import router from "./routes/index.js";
 
 const app = express();
 

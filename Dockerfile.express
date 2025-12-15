@@ -27,4 +27,4 @@ ENV NODE_ENV=development
 
 ENV CHOKIDAR_USEPOLLING=true
 
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "dev"]
