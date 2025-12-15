@@ -17,6 +17,8 @@ MONGODB_HOST=mongodb
 MONGODB_PORT=27017
 MONGODB_DB=bibliotheque
 PORT=3000
+JWT_SECRET=secret
+JWT_LIFETIME=30d
 ```
 
 _(Default values for development environment)_

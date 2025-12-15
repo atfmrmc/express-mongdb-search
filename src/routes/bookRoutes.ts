@@ -1,5 +1,6 @@
 import express from "express";
 import * as BookController from "../controllers/bookController.js";
+import { protectRoute } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
@@ -15,6 +16,6 @@ router.use("/", (req, res, next) => {
 // ------------ //
 // -- Routes -- //
 // ------------ //
-router.get("/", BookController.getBooks);
+router.get("/", protectRoute, BookController.getBooks);
 
 export default router;
