@@ -24,15 +24,15 @@ services:
         - action: rebuild
           path: package.json
 
-        - action: restart
-          path: ./server.js
-          target: /usr/src/app/
-          initial_sync: true
+        #- action: restart
+        #  path: ./server.js
+        #  target: /usr/src/app/
+        #  initial_sync: true
 
-        - action: restart
-          path: ./src/
-          target: /usr/src/app/
-          initial_sync: true
+        #- action: restart
+        #  path: ./src/
+        #  target: /usr/src/app/
+        #  initial_sync: true
 
     networks: [db]
 

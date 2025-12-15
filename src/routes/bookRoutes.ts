@@ -1,6 +1,6 @@
 import express from "express";
-import * as BookController from "../controllers/bookController.js";
-import { protectRoute } from "../middlewares/authMiddleware.js";
+import * as BookController from "../controllers/bookController";
+import { protectRoute } from "../middlewares/authMiddleware";
 
 const router = express.Router();
 

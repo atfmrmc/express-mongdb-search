@@ -1,4 +1,4 @@
-import User from "../models/userModel.js";
+import User from "../models/userModel";
 import jwt from "jsonwebtoken";
 
 // Create and sign a JWT token, then set it as a secure HTTP-only cookie
@@ -11,7 +11,7 @@ const createTokenAndSetCookie = (res, userId) => {
   // 2. Set the token as a secure HTTP-only cookie
   res.cookie("jwt", token, {
     httpOnly: true, // Prevents client-side JS access (XSS defense)
-    secure: process.env.NODE_ENV !== "development", // Use secure in production (HTTPS)
+    secure: process.env.NODE_ENV !== "development", // TODO : Use secure in production (HTTPS)
     sameSite: "strict", // CSRF defense
     maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days (must match JWT_LIFETIME)
   });

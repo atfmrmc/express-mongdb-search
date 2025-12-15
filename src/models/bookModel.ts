@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Author from "./authorModel.js";
+import Author from "./authorModel";
 
 // ------------ //
 // -- Schema -- //

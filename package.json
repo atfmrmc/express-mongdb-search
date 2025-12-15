@@ -2,10 +2,9 @@
   "name": "express-mongdb-search",
   "version": "1.0.0",
   "description": "Project created during ESGI IWM1 class",
-  "main": "server.js",
-  "type": "module",
+  "main": "dist/server.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "dev": "npx ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js"
   },
@@ -27,7 +26,7 @@
     "express-ejs-layouts": "^2.5.1",
     "express-rate-limit": "^8.2.1",
     "helmet": "^8.1.0",
-    "jsonwebtoken": "^9.0.2",
+    "jsonwebtoken": "^9.0.3",
     "mongoose": "^8.19.2"
   },
   "devDependencies": {

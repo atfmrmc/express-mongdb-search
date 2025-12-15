@@ -1,7 +1,7 @@
 import { Router } from "express";
-import bookRoutes from "./bookRoutes.js";
-import authorRoutes from "./authorRoutes.js";
-import userRoutes from "./userRoutes.js";
+import bookRoutes from "./bookRoutes";
+import authorRoutes from "./authorRoutes";
+import userRoutes from "./userRoutes";
 
 const router = Router();
 

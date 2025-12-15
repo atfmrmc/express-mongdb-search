@@ -1,7 +1,7 @@
 import express from "express";
-import setupDatabaseConnection from "../mongodb/connect.js";
-import router from "./routes/index.js";
-import setupGlobalMiddlewares from "./middlewares/index.ts";
+import setupDatabaseConnection from "./database/connect";
+import router from "./routes/index";
+import setupGlobalMiddlewares from "./middlewares/index";
 
 // ------------------------ //
 // -- Initialisation App -- //

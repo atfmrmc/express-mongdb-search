@@ -2,8 +2,8 @@ import express from "express";
 import expressLayouts from "express-ejs-layouts";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
-import setGlobalLocals from "./globalLocalsMiddleware.js";
-import { setUserLocals } from "./authMiddleware.js";
+import setGlobalLocals from "./globalLocalsMiddleware";
+import { setUserLocals } from "./authMiddleware";
 
 const setupGlobalMiddlewares = (app) => {
   // Fichiers statiques

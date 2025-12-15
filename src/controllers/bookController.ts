@@ -1,4 +1,4 @@
-import * as Book from "../models/bookModel.js";
+import * as Book from "../models/bookModel";
 
 // Gets books with optional search
 const getBooks = async (req, res) => {

@@ -1,5 +1,5 @@
-import User from "../models/userModel.js";
-import { createTokenAndSetCookie } from "../utils/jwtUtils.js";
+import User from "../models/userModel";
+import { createTokenAndSetCookie } from "../utils/jwtUtils";
 
 // ------------ //
 // -- Login -- //
