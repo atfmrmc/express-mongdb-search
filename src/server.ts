@@ -1,9 +1,7 @@
 import express from "express";
-import expressLayouts from "express-ejs-layouts";
-import helmet from "helmet";
-import setupDatabaseConnection from "../mongodb/connect.ts";
+import setupDatabaseConnection from "../mongodb/connect.js";
 import router from "./routes/index.js";
-import setupGlobalMiddlewares from "./src/middlewares/index.js";
+import setupGlobalMiddlewares from "./middlewares/index.ts";
 
 // ------------------------ //
 // -- Initialisation App -- //
